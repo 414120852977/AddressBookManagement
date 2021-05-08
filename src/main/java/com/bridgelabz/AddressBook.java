@@ -1,9 +1,6 @@
 package com.bridgelabz;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class AddressBook {
     List<Contact> list = new ArrayList<>();
@@ -132,5 +129,179 @@ public class AddressBook {
             }
         }
         System.out.println("after deleting "+list);
+    }
+    /**
+     * @addMultiplePerson method used to create addressbook into addressbook and admin created following addressbook then user also pressered
+     * use of  admin addresbooks
+     */
+    public void addMultiplePersonToAddressBookAndCreateAddressBook(){
+        /**
+         * this is for creating addressbook choice is there for user create his own or inbuils option is there..
+         */
+        System.out.println("Here some address book you can create it in your data:--");
+        HashMap<Integer,String> map = new HashMap<>();
+        map.put(1,"Aurangabad");
+        map.put(2,"Mumbai");
+        map.put(3,"Pune");
+        System.out.println("this addressbooks are inbuild in addressbook you can use this it or create your own"+map);
+
+        System.out.println("select your choice :1./n:add contact in inbuild addressbook,2./n add your own addressbook");
+        int numbers = scanner.nextInt();
+
+        switch (numbers) {
+            case 1:
+                System.out.println("1./t,For Aurangabad,2./t For Mumbai,3./t For Pune");
+                System.out.println("enter a number:--");
+                int number1 = scanner.nextInt();
+                switch (number1) {
+                    case 1:
+                        System.out.println("you will be added your detalis for Aurangabad:--");
+
+                        System.out.println("enter a number to how many contacts you have to add");
+                        int number = scanner.nextInt();
+
+                        for (int i = 1; i <= number; i++) {
+                            //   Contact person = new Contact("ash", "njjd", "njebd", "ehfe", "eddej", "sduh", 5454, 5454);
+
+                            Contact person = new Contact();
+                            System.out.println("you can countinue");
+                            System.out.println("enter your first name");
+                            String firstName = scanner.next();
+                            person.setFirstName(firstName);
+                            System.out.println("enter your last name");
+                            String lastName = scanner.next();
+                            person.setLastName(lastName);
+                            System.out.println("enter your address :");
+                            String address = scanner.next();
+                            person.setAddress(address);
+                            System.out.println("enter your state name");
+                            String state = scanner.next();
+                            person.setState(state);
+                            System.out.println("enter your city :");
+                            String city = scanner.next();
+                            if(city.equalsIgnoreCase("aurangabad")) {
+                                person.setCity(city);
+                            }else {
+                                try {
+                                    throw new InvalidCityException("invalid city");
+                                } catch (InvalidCityException e) {
+                                    System.out.println(e.message);
+                                    addMultiplePersonToAddressBookAndCreateAddressBook();
+                                }
+                            }
+                            System.out.println("enter your email");
+                            String email = scanner.next();
+                            person.setEmail(email);
+                            System.out.println("enter your zip :");
+                            int zip = scanner.nextInt();
+                            person.setZip(zip);
+                            System.out.println("enter your contact no");
+                            int mobile = scanner.nextInt();
+                            person.setPhoneNo(mobile);
+                            list.add(person);
+                        }
+                        System.out.println(list);
+                        break;
+                    case 2:
+                        System.out.println("you will be added your detalis for Mumbai:--");
+
+                        System.out.println("enter a number to how many contacts you have to add");
+                        Scanner scanner1 = new Scanner(System.in);
+                        int number2 = scanner1.nextInt();
+
+                        for (int i = 1; i <= number2; i++) {
+                            //   Contact person = new Contact("ash", "njjd", "njebd", "ehfe", "eddej", "sduh", 5454, 5454);
+
+                            Contact person = new Contact();
+                            System.out.println("you can countinue");
+                            System.out.println("enter your first name");
+                            String firstName = scanner1.next();
+                            person.setFirstName(firstName);
+                            System.out.println("enter your last name");
+                            String lastName = scanner1.next();
+                            person.setLastName(lastName);
+                            System.out.println("enter your address :");
+                            String address = scanner1.next();
+                            person.setAddress(address);
+                            System.out.println("enter your state name");
+                            String state = scanner1.next();
+                            person.setState(state);
+                            System.out.println("enter your city :");
+                            String city = scanner1.next();
+                            if(city.equalsIgnoreCase("Mumbai")) {
+                                person.setCity(city);
+                            }else {
+                                try {
+                                    throw new InvalidCityException("invalid city");
+                                } catch (InvalidCityException e) {
+                                    System.out.println(e.message);
+                                    addMultiplePersonToAddressBookAndCreateAddressBook();
+                                }
+                            }
+                            System.out.println("enter your email");
+                            String email = scanner1.next();
+                            person.setEmail(email);
+                            System.out.println("enter your zip :");
+                            int zip = scanner1.nextInt();
+                            person.setZip(zip);
+                            System.out.println("enter your contact no");
+                            int mobile = scanner1.nextInt();
+                            person.setPhoneNo(mobile);
+                            list.add(person);
+                        }
+                        System.out.println(list);
+                        break;
+                    case 3:
+
+                        System.out.println("you will be added your detalis for Pune:--");
+
+                        System.out.println("enter a number to how many contacts you have to add");
+                        Scanner scanner2 = new Scanner(System.in);
+                        int number3 = scanner2.nextInt();
+
+                        for (int i = 1; i <= number3; i++) {
+                            //   Contact person = new Contact("ash", "njjd", "njebd", "ehfe", "eddej", "sduh", 5454, 5454);
+
+                            Contact person = new Contact();
+                            System.out.println("you can countinue");
+                            System.out.println("enter your first name");
+                            String firstName = scanner2.next();
+                            person.setFirstName(firstName);
+                            System.out.println("enter your last name");
+                            String lastName = scanner2.next();
+                            person.setLastName(lastName);
+                            System.out.println("enter your address :");
+                            String address = scanner2.next();
+                            person.setAddress(address);
+                            System.out.println("enter your state name");
+                            String state = scanner2.next();
+                            person.setState(state);
+                            System.out.println("enter your city :");
+                            String city = scanner2.next();
+                            if(city.equalsIgnoreCase("pune")) {
+                                person.setCity(city);
+                            }else {
+                                try {
+                                    throw new InvalidCityException("invalid city");
+                                } catch (InvalidCityException e) {
+                                    System.out.println(e.message);
+                                    addMultiplePersonToAddressBookAndCreateAddressBook();
+                                }
+                            }
+                            System.out.println("enter your email");
+                            String email = scanner2.next();
+                            person.setEmail(email);
+                            System.out.println("enter your zip :");
+                            int zip = scanner2.nextInt();
+                            person.setZip(zip);
+                            System.out.println("enter your contact no");
+                            int mobile = scanner2.nextInt();
+                            person.setPhoneNo(mobile);
+                            list.add(person);
+                        }
+                }
+                System.out.println(list);
+                break;
+        }
     }
 }
