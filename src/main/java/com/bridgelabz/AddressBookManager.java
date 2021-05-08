@@ -20,5 +20,7 @@ public class AddressBookManager {
         addressBook.addMultiplePersonToAddressBookAndCreateAddressBook();
         addressBook.searchByName();
         addressBook.searchByEmail();
+        addressBook.searchByState();
+        addressBook.getContactByCity();
     }
 }

@@ -366,4 +366,38 @@ public class AddressBook {
             }
         }
     }
+    /**
+     * user can also check who is from my state in addressbook
+     */
+    public void searchByState() {
+        System.out.println("enter a name of state to fetch person data fro state :--");
+        String state = scanner.next();
+
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            Contact person = (Contact) it.next();
+            if (state.equals(person.getState())) {
+                List stream = list.stream().filter(n -> n.getCity().contains(state)).collect(Collectors.toList());
+                System.out.println(stream);
+            }
+        }
+    }
+    /**
+     * if user will hve been any help fro his city then he will check in addressbook who is from my city then he will find his
+     * phone no.
+     */
+    public void getContactByCity() {
+        System.out.println("enter a name of city to fetch contact details:--");
+        String city = scanner.next();
+
+        Iterator itrs = list.iterator();
+        while (itrs.hasNext()) {
+            Contact person = (Contact) itrs.next();
+
+            if (city.equals(person.getCity())) {
+                List streamList = list.stream().map(n -> n.getPhoneNo()).collect(Collectors.toList());
+                System.out.println(streamList);
+            }
+        }
+    }
 }
