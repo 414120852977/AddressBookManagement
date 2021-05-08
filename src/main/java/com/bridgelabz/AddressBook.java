@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import javax.naming.InvalidNameException;
 import java.util.*;
 
 public class AddressBook {
@@ -20,7 +21,15 @@ public class AddressBook {
             System.out.println("you can countinue");
             System.out.println("enter your first name");
             String firstName = scanner.next();
-            person.setFirstName(firstName);
+            if (firstName.equals(person.getFirstName())) {
+                try {
+                    throw new InvalidNameException("duplicate name");
+                } catch (InvalidNameException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                person.setFirstName(firstName);
+            }
             System.out.println("enter your last name");
             String lastName = scanner.next();
             person.setLastName(lastName);
