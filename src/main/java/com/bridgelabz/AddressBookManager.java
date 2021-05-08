@@ -13,5 +13,7 @@ public class AddressBookManager {
         Contact person = new Contact("ashok","mane","jalna","maharashtra","aurangabad","ash@gmail.com",4544,454);
         list.add(person);
         System.out.println(list);
+        AddressBook addressBook = new AddressBook();
+        addressBook.addContact();
     }
 }
