@@ -19,5 +19,6 @@ public class AddressBookManager {
         addressBook.deleteperson();
         addressBook.addMultiplePersonToAddressBookAndCreateAddressBook();
         addressBook.searchByName();
+        addressBook.searchByEmail();
     }
 }

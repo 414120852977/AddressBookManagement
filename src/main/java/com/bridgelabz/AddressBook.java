@@ -350,4 +350,20 @@ public class AddressBook {
             }
         }
     }
+    /**
+     * if user know person email id then he will also check by email id whos there with this email id
+     */
+    public void searchByEmail() {
+        System.out.println("enter email to get that person details:");
+        Scanner sc = new Scanner(System.in);
+        String email = sc.nextLine();
+        Iterator itr = list.iterator();
+        while (itr.hasNext()) {
+            Contact person = (Contact) itr.next();
+            if (email.equals(person.getEmail())) {
+                List streamList = list.stream().filter(n -> n.getEmail().contains(email)).collect(Collectors.toList());
+                System.out.println(streamList);
+            }
+        }
+    }
 }
