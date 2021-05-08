@@ -2,6 +2,7 @@ package com.bridgelabz;
 
 import javax.naming.InvalidNameException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBook {
     List<Contact> list = new ArrayList<>();
@@ -329,5 +330,24 @@ public class AddressBook {
             set.add(name);
         }
         System.out.println(set);
+    }
+    /**
+     * user can do serch data by using name of a person
+     */
+    public void searchByName() {
+        System.out.println("enter a name to search");
+        Scanner sc = new Scanner(System.in);
+        String fName = sc.nextLine();
+        Iterator itr = list.iterator();
+        while (itr.hasNext()) {
+            Contact person = (Contact) itr.next();
+            if (fName.equals(person.getFirstName())) {
+                List streamlist = list.stream().
+                        filter(n -> n.getFirstName().
+                                contains(fName)).
+                        collect(Collectors.toList());
+                System.out.println(streamlist);
+            }
+        }
     }
 }
