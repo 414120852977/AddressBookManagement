@@ -302,6 +302,23 @@ public class AddressBook {
                 }
                 System.out.println(list);
                 break;
+            case 2:
+                addMultipleBook();
         }
+    }
+    /**
+     * user can also creating his own addressbook with gives his specific name to addressbook
+     */
+    public void addMultipleBook() {
+        Set set = new TreeSet();
+        System.out.println(" yours choice how many addressbook you want to create it:--");
+        int number = scanner.nextInt();
+
+        for (int index = 1; index <= number; index++) {
+            System.out.println("give name to your dictionary:--");
+            String name = scanner.next();
+            set.add(name);
+        }
+        System.out.println(set);
     }
 }
