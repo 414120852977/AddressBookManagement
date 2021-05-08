@@ -22,5 +22,6 @@ public class AddressBookManager {
         addressBook.searchByEmail();
         addressBook.searchByState();
         addressBook.getContactByCity();
+        addressBook.sortAddressBookByName();
     }
 }

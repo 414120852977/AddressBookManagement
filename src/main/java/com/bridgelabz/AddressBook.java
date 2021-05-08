@@ -400,4 +400,15 @@ public class AddressBook {
             }
         }
     }
+    /**
+     * sorting by name
+     */
+    public void sortAddressBookByName() {
+        System.out.println(" write name to sort entry by name :");
+        String name = scanner.nextLine();
+        if (name.equalsIgnoreCase(person.getFirstName())) {
+            Collections.sort(list, (n1, n2) -> n1.getFirstName().compareTo(n1.getFirstName()));
+        }
+        System.out.println(list);
+    }
 }
