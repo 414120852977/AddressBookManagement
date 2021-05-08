@@ -1,7 +1,15 @@
 package com.bridgelabz;
 
-import java.io.File;
-import java.io.IOException;
+import com.google.gson.Gson;
+import com.opencsv.CSVWriter;
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -57,6 +65,28 @@ public class Utility {
         List<Contact> list = new ArrayList<>();
         try {
             Files.lines(new File("contact.txt").toPath()).map(line -> line.trim()).forEach(line -> System.out.println(line));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public void writeCsvData(List<Contact> list) throws CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
+        try(  Writer writer = Files.newBufferedWriter(Paths.get(ADDRESS_CSV_NAME));)
+        {
+            StatefulBeanToCsv<Contact> beanToCsv = new StatefulBeanToCsvBuilder(writer)
+                    .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
+                    .build();
+            List<Contact> list1 = new ArrayList<Contact>();
+            beanToCsv.write(list);
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public List<Contact> readDataCSV() {
+        List<Contact> list = new ArrayList<>();
+        try {
+            Files.lines(new File("contact_info.csv").toPath()).map(line -> line.trim()).forEach(line -> System.out.println(line));
         } catch (IOException e) {
             e.printStackTrace();
         }

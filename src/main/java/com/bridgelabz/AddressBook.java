@@ -1,5 +1,9 @@
 package com.bridgelabz;
 
+import com.google.gson.Gson;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import javax.naming.InvalidNameException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -426,6 +430,11 @@ public class AddressBook {
             }
         }
     }
+
+    /**
+     * printing text file...
+     * @param ioService
+     */
     public  void showOnConsole(Utility.IOService ioService) {
         if (ioService.equals(Utility.IOService.CONSOLE_IO)) {
             System.out.println(list);
@@ -433,4 +442,19 @@ public class AddressBook {
             new Utility().writeData(list);
         }
     }
+
+    /**
+     * printing csv file....
+     * @param ioService1
+     * @throws CsvRequiredFieldEmptyException
+     * @throws CsvDataTypeMismatchException
+     */
+    public void consoleCsv(Utility.IOService ioService1) throws CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
+        if (ioService1.equals(Utility.IOService.CONSOLE_IO)) {
+            System.out.println(list);
+        } else if(ioService1.equals(Utility.IOService.FILE_IO)) {
+            new Utility().writeCsvData(list);
+        }
+    }
+
 }

@@ -1,11 +1,14 @@
 package com.bridgelabz;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class AddressBookManager {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
         /**
          * welcome message
          */
@@ -26,19 +29,22 @@ public class AddressBookManager {
             case 1:
                 AddressBook addressBook = new AddressBook();
                 addressBook.addContact();
-//                addressBook.editperson();
-//                addressBook.deleteperson();
-//                addressBook.addMultiplePersonToAddressBookAndCreateAddressBook();
-//                addressBook.searchByName();
-//                addressBook.searchByEmail();
-//                addressBook.searchByState();
-//                addressBook.getContactByCity();
-//                addressBook.sortAddressBookByName();
-//                addressBook.sortByState();
+                addressBook.editperson();
+                addressBook.deleteperson();
+                addressBook.addMultiplePersonToAddressBookAndCreateAddressBook();
+                addressBook.searchByName();
+                addressBook.searchByEmail();
+                addressBook.searchByState();
+                addressBook.getContactByCity();
+                addressBook.sortAddressBookByName();
+                addressBook.sortByState();
                 addressBook.showOnConsole(Utility.IOService.FILE_IO);
                 System.out.println("reading data using file io:");
                 Utility utility  = new Utility();
                 utility.readData();
+                addressBook.consoleCsv(Utility.IOService.FILE_IO);
+                System.out.println("reading csv file...........");
+                utility.readDataCSV();
                 break;
             case 2:
                 System.out.println("thanks for joining us ! have a nice day");
