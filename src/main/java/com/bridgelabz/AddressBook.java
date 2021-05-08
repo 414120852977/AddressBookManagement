@@ -456,5 +456,13 @@ public class AddressBook {
             new Utility().writeCsvData(list);
         }
     }
+    /**
+     * writing json string ......
+     */
+    public void gsonData() {
+        Gson gson = new Gson();
+        gson.toJson(list);
+        System.out.println("gson string is :----->"+list);
+    }
 
 }

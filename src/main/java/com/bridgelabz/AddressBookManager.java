@@ -45,6 +45,7 @@ public class AddressBookManager {
                 addressBook.consoleCsv(Utility.IOService.FILE_IO);
                 System.out.println("reading csv file...........");
                 utility.readDataCSV();
+                addressBook.gsonData();
                 break;
             case 2:
                 System.out.println("thanks for joining us ! have a nice day");
