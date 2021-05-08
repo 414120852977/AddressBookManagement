@@ -15,5 +15,6 @@ public class AddressBookManager {
         System.out.println(list);
         AddressBook addressBook = new AddressBook();
         addressBook.addContact();
+        addressBook.editperson();
     }
 }
