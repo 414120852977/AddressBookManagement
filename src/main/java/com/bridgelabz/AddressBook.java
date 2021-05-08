@@ -425,6 +425,12 @@ public class AddressBook {
                 System.out.println(list);
             }
         }
-
+    }
+    public  void showOnConsole(Utility.IOService ioService) {
+        if (ioService.equals(Utility.IOService.CONSOLE_IO)) {
+            System.out.println(list);
+        } else if (ioService.equals(Utility.IOService.FILE_IO)) {
+            new Utility().writeData(list);
+        }
     }
 }

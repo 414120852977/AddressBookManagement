@@ -1,0 +1,2 @@
+Contact{firstName='ashok', lastName='dddd', address='ddd', state='dddd', city='ddd', email='dddd', zip=4545, phoneNo=454}
+Contact{firstName='mane', lastName='ddd', address='ddddd', state='dddd', city='ddddd', email='dddd', zip=5445, phoneNo=454}
