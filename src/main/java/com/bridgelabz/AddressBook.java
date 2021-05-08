@@ -411,4 +411,20 @@ public class AddressBook {
         }
         System.out.println(list);
     }
+    /**
+     * sort by state
+     */
+    public  void  sortByState() {
+        System.out.println("enter a state  to seach :");
+        String state = scanner.next();
+        Iterator itr = list.listIterator();
+        while (itr.hasNext()) {
+            Contact contact = (Contact) itr.next();
+            if (state.equalsIgnoreCase(person.getState())) {
+                Collections.sort(list,(l1,l2) -> l1.getFirstName().compareTo(l1.getFirstName()));
+                System.out.println(list);
+            }
+        }
+
+    }
 }
