@@ -118,4 +118,19 @@ public class AddressBook {
             }
         }
     }
+    /**
+     * @delete method is used to deleting present person from addressbook. user can do deleting his data on his own restriction
+     */
+    public void deleteperson() {
+        System.out.println("enter your name to delete data of name:");
+        String fName = scanner.next();
+        Iterator itr = list.iterator();
+        while (itr.hasNext()) {
+            Contact person = (Contact) itr.next();
+            if (fName.equals(person.getFirstName())) {
+                list.remove(person);
+            }
+        }
+        System.out.println("after deleting "+list);
+    }
 }
