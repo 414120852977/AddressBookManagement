@@ -28,24 +28,26 @@ public class AddressBookManager {
         switch (number) {
             case 1:
                 AddressBook addressBook = new AddressBook();
-                addressBook.addContact();
-                addressBook.editperson();
-                addressBook.deleteperson();
-                addressBook.addMultiplePersonToAddressBookAndCreateAddressBook();
-                addressBook.searchByName();
-                addressBook.searchByEmail();
-                addressBook.searchByState();
-                addressBook.getContactByCity();
-                addressBook.sortAddressBookByName();
-                addressBook.sortByState();
-                addressBook.showOnConsole(Utility.IOService.FILE_IO);
-                System.out.println("reading data using file io:");
                 Utility utility  = new Utility();
+                addressBook.addContact();
+//                addressBook.editperson();
+//                addressBook.deleteperson();
+//                addressBook.addMultiplePersonToAddressBookAndCreateAddressBook();
+//                addressBook.searchByName();
+//                addressBook.searchByEmail();
+//                addressBook.searchByState();
+//                addressBook.getContactByCity();
+//                addressBook.sortAddressBookByName();
+//                addressBook.sortByState();
+                addressBook.showOnConsole(Utility.IOService.FILE_IO);
+                System.out.println("reading data using file io:.........");
                 utility.readData();
                 addressBook.consoleCsv(Utility.IOService.FILE_IO);
                 System.out.println("reading csv file...........");
                 utility.readDataCSV();
-                addressBook.gsonData();
+                addressBook.consoleOnJson(Utility.IOService.FILE_IO);
+                System.out.println("reading json file...........");
+                utility.readJson();
                 break;
             case 2:
                 System.out.println("thanks for joining us ! have a nice day");

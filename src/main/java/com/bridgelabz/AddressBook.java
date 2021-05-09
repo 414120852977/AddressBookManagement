@@ -465,4 +465,17 @@ public class AddressBook {
         System.out.println("gson string is :----->"+list);
     }
 
+    /**
+     * added json file
+     * @param ioService
+     */
+    public void consoleOnJson(Utility.IOService ioService) {
+        if (ioService.equals(Utility.IOService.CONSOLE_IO)) {
+            System.out.println(list);
+        }
+        else if (ioService.equals(Utility.IOService.FILE_IO)) {
+           new Utility().writeJson(list);
+        }
+    }
+
 }

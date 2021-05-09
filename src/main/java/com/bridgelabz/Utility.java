@@ -19,7 +19,7 @@ public class Utility {
     public enum IOService {CONSOLE_IO, FILE_IO, DB_IO, REST_IO}
 
     public static String ADDRESS_FILE_NAME = "contact.txt";
-    public static String ADDRESS_CSV_NAME = "contact_info.csv";
+    public static String ADDRESS_CSV_NAME = "contact_info1.csv";
 
     /**
      * here write data method is used to write data into the text file
@@ -86,11 +86,37 @@ public class Utility {
     public List<Contact> readDataCSV() {
         List<Contact> list = new ArrayList<>();
         try {
-            Files.lines(new File("contact_info.csv").toPath()).map(line -> line.trim()).forEach(line -> System.out.println(line));
+            Files.lines(new File("contact_info1.csv").toPath()).map(line -> line.trim()).forEach(line -> System.out.println(line));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return list;
     }
 
+    /**
+     * write json file
+     */
+    public void writeJson(List<Contact> list) {
+        Gson  gson = new Gson();
+        try (FileWriter file = new FileWriter("contact.json")) {
+            file.write(gson.toJson(list));
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * reading from json file....
+     */
+    public void readJson() {
+        List<Contact> list = new ArrayList<>();
+        try {
+           Files.lines(new File("contact.json").toPath()).map(line -> line.trim()).forEach(System.out::println);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+
