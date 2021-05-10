@@ -121,7 +121,6 @@ public class Contact {
                 ", phoneNo=" + phoneNo +
                 '}';
     }
-
     /**
      * override equal method to get object equals in teo fields
      * @param o

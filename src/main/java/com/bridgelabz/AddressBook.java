@@ -141,8 +141,8 @@ public class AddressBook {
             if (fName.equals(person.getFirstName())) {
                 list.remove(person);
             }
+            System.out.println("after deleting "+list);
         }
-        System.out.println("after deleting "+list);
     }
     /**
      * @addMultiplePerson method used to create addressbook into addressbook and admin created following addressbook then user also pressered
@@ -214,7 +214,6 @@ public class AddressBook {
                             person.setPhoneNo(mobile);
                             list.add(person);
                         }
-                        System.out.println(list);
                         break;
                     case 2:
                         System.out.println("you will be added your detalis for Mumbai:--");
@@ -263,7 +262,6 @@ public class AddressBook {
                             person.setPhoneNo(mobile);
                             list.add(person);
                         }
-                        System.out.println(list);
                         break;
                     case 3:
 
@@ -274,8 +272,6 @@ public class AddressBook {
                         int number3 = scanner2.nextInt();
 
                         for (int i = 1; i <= number3; i++) {
-                            //   Contact person = new Contact("ash", "njjd", "njebd", "ehfe", "eddej", "sduh", 5454, 5454);
-
                             Contact person = new Contact();
                             System.out.println("you can countinue");
                             System.out.println("enter your first name");
@@ -317,7 +313,7 @@ public class AddressBook {
                 System.out.println(list);
                 break;
             case 2:
-                addMultipleBook();
+                addAddressBook();
         }
     }
     /**
@@ -334,6 +330,71 @@ public class AddressBook {
             set.add(name);
         }
         System.out.println(set);
+    }
+
+    public void addAddressBook() {
+        System.out.println("**welcome to add addressbook**");
+        System.out.println(" yours choice how many addressbook you want to create it:--");
+        int bookValue = scanner.nextInt();
+        Map<Integer,String> addressBook = new HashMap<>();
+        for (int index = 1; index <= bookValue; index++) {
+            System.out.println("enter name to addressbook:");
+            String addressBookName = scanner.next();
+            System.out.println("enter a key for addressbook:");
+            int key = scanner.nextInt();
+          addressBook.put(key,addressBookName);
+        }
+        System.out.println("created addressbook"+addressBook);
+        System.out.println("enter a key to add details in perticular addressbook----");
+        int keyValue = scanner.nextInt();
+        if (addressBook.containsKey(keyValue)) {
+            System.out.println("enter a number to how many contacts you have to add");
+            Scanner scanner = new Scanner(System.in);
+            int number = scanner.nextInt();
+
+            for (int i = 1; i <= number; i++) {
+                Contact person = new Contact();
+                System.out.println("you can countinue");
+                System.out.println("enter your first name");
+                String firstName = scanner.next();
+                if (firstName.equals(person.getFirstName())) {
+                    try {
+                        throw new InvalidNameException("duplicate name");
+                    } catch (InvalidNameException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    person.setFirstName(firstName);
+                }
+                System.out.println("enter your last name");
+                String lastName = scanner.next();
+                person.setLastName(lastName);
+                System.out.println("enter your address :");
+                String address = scanner.next();
+                person.setAddress(address);
+                System.out.println("enter your state name");
+                String state = scanner.next();
+                person.setState(state);
+                System.out.println("enter your city :");
+                String city = scanner.next();
+                person.setCity(city);
+                System.out.println("enter your email");
+                String email = scanner.next();
+                person.setEmail(email);
+                System.out.println("enter your zip :");
+                int zip = scanner.nextInt();
+                person.setZip(zip);
+                System.out.println("enter your contact no");
+                int mobile = scanner.nextInt();
+                person.setPhoneNo(mobile);
+                list.add(person);
+            }
+            System.out.println(list);
+        }else {
+            System.out.println("entered wrong key enter correct key!!!");
+            addAddressBook();
+        }
+
     }
     /**
      * user can do serch data by using name of a person
@@ -409,7 +470,7 @@ public class AddressBook {
      */
     public void sortAddressBookByName() {
         System.out.println(" write name to sort entry by name :");
-        String name = scanner.nextLine();
+        String name = scanner.next();
         if (name.equalsIgnoreCase(person.getFirstName())) {
             Collections.sort(list, (n1, n2) -> n1.getFirstName().compareTo(n1.getFirstName()));
         }
