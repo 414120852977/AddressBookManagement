@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Contact {
@@ -11,6 +12,8 @@ public class Contact {
      String email;
      int zip;
      int phoneNo;
+     LocalDate start;
+
 
     /**
      * used constructor overhere to fetch data in other classes its a fature of object oriented programming language
@@ -32,6 +35,19 @@ public class Contact {
         this.email = email;
         this.zip = zip;
         this.phoneNo = phoneNo;
+
+    }
+
+    public Contact(String firstName, String lastName, String address, String state, String city, String email, int zip, int phoneNo, LocalDate start) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.state = state;
+        this.city = city;
+        this.email = email;
+        this.zip = zip;
+        this.phoneNo = phoneNo;
+        this.start = start;
     }
 
     /**
@@ -108,6 +124,14 @@ public class Contact {
         this.phoneNo = phoneNo;
     }
 
+    public LocalDate getStart() {
+        return start;
+    }
+
+    public void setStart(LocalDate start) {
+        this.start = start;
+    }
+
     @Override
     public String toString() {
         return "Contact{" +
@@ -119,8 +143,10 @@ public class Contact {
                 ", email='" + email + '\'' +
                 ", zip=" + zip +
                 ", phoneNo=" + phoneNo +
+                ", start=" + start +
                 '}';
     }
+
     /**
      * override equal method to get object equals in teo fields
      * @param o
@@ -131,12 +157,11 @@ public class Contact {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contact contact = (Contact) o;
-        return zip == contact.zip && phoneNo == contact.phoneNo && Objects.equals(firstName, contact.firstName) && Objects.equals(lastName, contact.lastName) && Objects.equals(address, contact.address) && Objects.equals(state, contact.state) && Objects.equals(city, contact.city) && Objects.equals(email, contact.email);
+        return zip == contact.zip && phoneNo == contact.phoneNo && Objects.equals(firstName, contact.firstName) && Objects.equals(lastName, contact.lastName) && Objects.equals(address, contact.address) && Objects.equals(state, contact.state) && Objects.equals(city, contact.city) && Objects.equals(email, contact.email) && Objects.equals(start, contact.start);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, address, state, city, email, zip, phoneNo);
+        return Objects.hash(firstName, lastName, address, state, city, email, zip, phoneNo, start);
     }
-
 }

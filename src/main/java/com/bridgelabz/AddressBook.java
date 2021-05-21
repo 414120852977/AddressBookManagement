@@ -5,6 +5,7 @@ import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 import javax.naming.InvalidNameException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,9 @@ public class AddressBook {
     Map<String,List<Contact>> addressBookMap = new HashMap<>();
     Contact person = new Contact();
     Scanner scanner = new Scanner(System.in);
+
+
+
     /**
      * created method to adding contacts user choice how many contacts he want to add in addressbook
      * @return
@@ -546,5 +550,21 @@ public class AddressBook {
            new Utility().writeJson(list);
         }
     }
+
+
+    public List<Contact> readAddressBookDataDB(IOService ioService) {
+        if(ioService.equals(Utility.IOService.DB_IO))
+            this.list = new AddressBookDBService().readData();
+        return this.list;
+    }
+
+    public List<Contact> readContactDataForGivenDateRange(LocalDate startDate, LocalDate endDate) {
+        AddressBookDBService addressBookDBService = new AddressBookDBService();
+        this.list = addressBookDBService.getContactForGivenDateRange(startDate, endDate);
+        return list;
+    }
+
+
+    public enum IOService {FILE_IO,CONSOLE_IO,DB_IO,REST_IO}
 
 }
