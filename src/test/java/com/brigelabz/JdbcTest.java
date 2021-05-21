@@ -7,6 +7,7 @@ import com.bridgelabz.Contact;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,15 @@ public class JdbcTest {
         Map<String, Integer> contactByCityOrStateMap = addressBook.readContactByCityOrState();
         Assert.assertEquals((int) contactByCityOrStateMap.get("uganda"), 1);
         Assert.assertEquals((int) contactByCityOrStateMap.get("maharashtra"), 1);
+    }
+    @Test
+    public void givenNewContact_WhenAdded_ShouldSyncWithDB() {
+        AddressBook addressBook = new AddressBook();
+        addressBook.readAddressBookDataDB(AddressBook.IOService.DB_IO);
+        addressBook.addContactToDB("rohit","sharma","panvel","mumbai",Date.valueOf("2021-05-21"),"Maharashtra",4545,454545454,"rohit@123","rohit"
+        ,"Cricketer");
+        boolean result = addressBook.checkAddressBookInSyncWithDB("rohit");
+        Assert.assertTrue(result);
     }
 
 }

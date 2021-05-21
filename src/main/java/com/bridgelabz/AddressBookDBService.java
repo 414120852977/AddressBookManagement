@@ -93,7 +93,7 @@ public class AddressBookDBService {
 //        }
 //        return list;
 //    }
-    public List<Contact> getAddressBookData(ResultSet resultSet) {
+    public List<Contact> getAddressBookData(String resultSet) {
         List<Contact> list  = new ArrayList<>();
         try {
             while (resultSet.next()){
@@ -148,6 +148,47 @@ public class AddressBookDBService {
             e.printStackTrace();
         }
         return contactByCityOrStateMap;
+    }
+
+    public Contact addContact(String firstName, String lastName, String address, String city, Date start, String state, int zip, int phoneNumber, String email, String name, String type) {
+
+        Connection connection = null;
+        try {
+            connection = this.getConnection();
+            connection.setAutoCommit(false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            assert connection != null;
+            Statement statement = connection.createStatement();
+            String sql = String.format(
+                    "INSERT INTO address_book" +
+                            "(firstName,lastName,address,city,start,state,zip,phoneNumber,email,Name,TYPE) " +
+                            "values ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+                     firstName, lastName, address, city,start, state, zip, phoneNumber, email,name,type);
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return new Contact( firstName, lastName, address, state, city, email, zip, phoneNumber, LocalDate.now());
     }
 }
 

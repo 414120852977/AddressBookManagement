@@ -5,6 +5,8 @@ import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 import javax.naming.InvalidNameException;
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -568,6 +570,23 @@ public class AddressBook {
         AddressBookDBService addressBookDBService = new AddressBookDBService();
             return addressBookDBService.getContactsByCityOrState();
 
+    }
+
+    public void addContactToDB(String firstName, String lastName, String address, String city, Date start, String state, int zip, int phoneNumber, String email, String name, String TYPE) {
+      AddressBookDBService addressBookDBService = new AddressBookDBService();
+        list.add(addressBookDBService.addContact(firstName,lastName,address,city,start,state,zip,phoneNumber,email,name,TYPE));
+    }
+
+    public boolean checkAddressBookInSyncWithDB(String firstname) {
+        AddressBookDBService addressBookDBService = new AddressBookDBService();
+        List<Contact> addressBookDataList = addressBookDBService.getAddressBookData(firstname);
+        return addressBookDataList.get(0).equals(getAddressBookData(firstname));
+    }
+    private Contact getAddressBookData(String firstName) {
+        return this.list.stream()
+                .filter(addressBookDataListItem -> addressBookDataListItem.firstName.equals(firstName))
+                .findFirst()
+                .orElse(null);
     }
 
 
