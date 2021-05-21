@@ -3,7 +3,9 @@ package com.bridgelabz;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AddressBookDBService {
     List<Contact> list = new ArrayList<>();
@@ -120,6 +122,32 @@ public class AddressBookDBService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Map<String, Integer> getContactsByCityOrState() {
+        AddressBookDBService addressBookDBService = new AddressBookDBService();
+        Map<String, Integer> contactByCityOrStateMap = new HashMap<>();
+        ResultSet resultSet;
+        String sqlCity = "SELECT city, count(firstName) as count from address_book group by city; ";
+        String sqlState = "SELECT state, count(firstName) as count from address_book group by state; ";
+        try (Connection connection = addressBookDBService.getConnection()) {
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery(sqlCity);
+            while (resultSet.next()) {
+                String city = resultSet.getString("city");
+                Integer count = resultSet.getInt("count");
+                contactByCityOrStateMap.put(city,count);
+            }
+            resultSet = statement.executeQuery(sqlState);
+            while (resultSet.next()) {
+                String state = resultSet.getString("state");
+                Integer count = resultSet.getInt("count");
+                contactByCityOrStateMap.put(state,count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return contactByCityOrStateMap;
     }
 }
 

@@ -564,6 +564,12 @@ public class AddressBook {
         return list;
     }
 
+    public Map<String, Integer> readContactByCityOrState() {
+        AddressBookDBService addressBookDBService = new AddressBookDBService();
+            return addressBookDBService.getContactsByCityOrState();
+
+    }
+
 
     public enum IOService {FILE_IO,CONSOLE_IO,DB_IO,REST_IO}
 

@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class JdbcTest {
     @Test
@@ -35,6 +36,14 @@ public class JdbcTest {
         LocalDate endDate = LocalDate.now();
         List<Contact> addressBookDataList = addressBook.readContactDataForGivenDateRange(startDate, endDate);
         Assert.assertEquals(2, addressBookDataList.size());
+    }
+    @Test
+    public void givenContacts_RetrieveNumberOfContacts_ByCityOrState() {
+        AddressBook addressBook = new AddressBook();
+        addressBook.readAddressBookDataDB(AddressBook.IOService.DB_IO);
+        Map<String, Integer> contactByCityOrStateMap = addressBook.readContactByCityOrState();
+        Assert.assertEquals((int) contactByCityOrStateMap.get("uganda"), 1);
+        Assert.assertEquals((int) contactByCityOrStateMap.get("maharashtra"), 1);
     }
 
 }
