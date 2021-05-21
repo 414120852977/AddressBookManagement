@@ -26,8 +26,8 @@ public class AddressBookManager {
         while (option != 2) {
             System.out.println("\n *****Enter Your Choice*****\n1.Add Contact\t\t\t\t2.Edit Contact\n3.delete contact\t\t\t4.adding multiple person to addressbook\n" +
                     "5.search person details by name\t\t6.finding serching details by email\n7.Search Person By state\t\t8.get contact no by city" +
-                    "\n9.sort addressbook by name\t\t\t\t10.sort addressbook by state\n11.reading text file " +
-                    "\t\t12.reading and writing csv file\n13.reading and writing json file\t\t\t14.exit");
+                    "\n9.sort addressbook by name\t\t\t\t10.display addressbooks\t\t11.sort addressbook by state\n12.reading text file " +
+                    "\t\t13.reading and writing csv file\n14.reading and writing json file\t\t\t15.exit");
             System.out.println("enter a number--->");
             int choice = sc.nextInt();
             switch (choice) {
@@ -59,19 +59,22 @@ public class AddressBookManager {
                     addressBook.sortAddressBookByName();
                     break;
                 case 10:
-                    addressBook.sortByState();
+                    addressBook.showAddressBook();
                     break;
                 case 11:
+                    addressBook.sortByState();
+                    break;
+                case 12:
                     addressBook.showOnConsole(Utility.IOService.FILE_IO);
                     System.out.println("reading data using file io:.........");
                     utility.readData();
                     break;
-                case 12:
+                case 13:
                     addressBook.consoleCsv(Utility.IOService.FILE_IO);
                     System.out.println("reading csv file...........");
                     utility.readDataCSV();
                     break;
-                case 13:
+                case 14:
                     addressBook.consoleOnJson(Utility.IOService.FILE_IO);
                     System.out.println("reading json file...........");
                     utility.readJson();
