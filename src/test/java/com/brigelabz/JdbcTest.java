@@ -15,4 +15,12 @@ public class JdbcTest {
         addressBookDBService.showDatabaseRetrivedData();
         Assert.assertEquals(2,result.size());
     }
+
+    @Test
+    public void givenNewInformationToEmployee_WhenUpdated_ShouldSyncWithDatabase() {
+        AddressBookDBService addressBookDBService = new AddressBookDBService();
+         addressBookDBService.updateInformationToContact("joe");
+        Assert.assertEquals(2,addressBookDBService.readData().size());
+    }
+
 }

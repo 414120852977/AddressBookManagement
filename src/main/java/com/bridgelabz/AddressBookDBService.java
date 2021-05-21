@@ -44,5 +44,15 @@ public class AddressBookDBService {
     public void showDatabaseRetrivedData() {
         System.out.println("persons data->"+list);
     }
+
+    public void updateInformationToContact(String firstName) {
+        String sql = " update address_book SET city = 'uganda' where firstName = 'joe';";
+        try (Connection connection = this.getConnection()){
+            Statement statement = connection.createStatement();
+             statement.executeUpdate(sql);
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
