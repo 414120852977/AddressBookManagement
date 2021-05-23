@@ -1,10 +1,13 @@
 package com.bridgelabz;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Contact {
-     String firstName;
+    public String name;
+    public Object type;
+    String firstName;
      String lastName;
      String address;
      String state;
@@ -50,10 +53,42 @@ public class Contact {
         this.start = start;
     }
 
+
     /**
      * its a empty consructor to get dynamic data from user
      */
     public Contact() {
+    }
+
+    public Contact(String firstName, String lastName, String address, String city, LocalDate start, String state, int zip, int phoneNo, String email, String name, String type) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.address = address;
+    this.city = city;
+    this.start = start;
+    this.state = state;
+    this.zip = zip;
+    this.phoneNo = phoneNo;
+    this.email = email;
+    this.name = name;
+    this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "name='" + name + '\'' +
+                ", type=" + type +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", email='" + email + '\'' +
+                ", zip=" + zip +
+                ", phoneNo=" + phoneNo +
+                ", start=" + start +
+                '}';
     }
 
     /**
@@ -132,21 +167,6 @@ public class Contact {
         this.start = start;
     }
 
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", state='" + state + '\'' +
-                ", city='" + city + '\'' +
-                ", email='" + email + '\'' +
-                ", zip=" + zip +
-                ", phoneNo=" + phoneNo +
-                ", start=" + start +
-                '}';
-    }
-
     /**
      * override equal method to get object equals in teo fields
      * @param o
@@ -164,4 +184,5 @@ public class Contact {
     public int hashCode() {
         return Objects.hash(firstName, lastName, address, state, city, email, zip, phoneNo, start);
     }
+
 }

@@ -13,17 +13,16 @@ import java.util.stream.Collectors;
 
 public class AddressBook {
     List<Contact> list = new ArrayList<>();
-    Map<String,List<Contact>> addressBookMap = new HashMap<>();
+    Map<String, List<Contact>> addressBookMap = new HashMap<>();
     Contact person = new Contact();
     Scanner scanner = new Scanner(System.in);
 
-
-
     /**
      * created method to adding contacts user choice how many contacts he want to add in addressbook
+     *
      * @return
      */
-    public void addContact()  {
+    public void addContact() {
         System.out.println("enter a number to how many contacts you have to add");
         Scanner scanner = new Scanner(System.in);
         int number = scanner.nextInt();
@@ -39,7 +38,7 @@ public class AddressBook {
                 } catch (InvalidNameException e) {
                     e.printStackTrace();
                 }
-            }else {
+            } else {
                 person.setFirstName(firstName);
             }
             System.out.println("enter your last name");
@@ -67,6 +66,7 @@ public class AddressBook {
         }
         System.out.println(list);
     }
+
     /**
      * @edit method gives us to edit person data user can also edit his data by using his/she name
      */
@@ -136,6 +136,7 @@ public class AddressBook {
             }
         }
     }
+
     /**
      * @delete method is used to deleting present person from addressbook. user can do deleting his data on his own restriction
      */
@@ -148,23 +149,24 @@ public class AddressBook {
             if (fName.equals(person.getFirstName())) {
                 list.remove(person);
             }
-            System.out.println("after deleting "+list);
+            System.out.println("after deleting " + list);
         }
     }
+
     /**
      * @addMultiplePerson method used to create addressbook into addressbook and admin created following addressbook then user also pressered
      * use of  admin addresbooks
      */
-    public void addMultiplePersonToAddressBookAndCreateAddressBook(){
+    public void addMultiplePersonToAddressBookAndCreateAddressBook() {
         /**
          * this is for creating addressbook choice is there for user create his own or inbuils option is there..
          */
         System.out.println("Here some address book you can create it in your data:--");
-        HashMap<Integer,String> map = new HashMap<>();
-        map.put(1,"Aurangabad");
-        map.put(2,"Mumbai");
-        map.put(3,"Pune");
-        System.out.println("this addressbooks are inbuild in addressbook you can use this it or create your own"+map);
+        HashMap<Integer, String> map = new HashMap<>();
+        map.put(1, "Aurangabad");
+        map.put(2, "Mumbai");
+        map.put(3, "Pune");
+        System.out.println("this addressbooks are inbuild in addressbook you can use this it or create your own" + map);
 
         System.out.println("select your choice :1./n:add contact in inbuild addressbook,2./n add your own addressbook");
         int numbers = scanner.nextInt();
@@ -200,9 +202,9 @@ public class AddressBook {
                             person.setState(state);
                             System.out.println("enter your city :");
                             String city = scanner.next();
-                            if(city.equalsIgnoreCase("aurangabad")) {
+                            if (city.equalsIgnoreCase("aurangabad")) {
                                 person.setCity(city);
-                            }else {
+                            } else {
                                 try {
                                     throw new InvalidCityException("invalid city");
                                 } catch (InvalidCityException e) {
@@ -248,9 +250,9 @@ public class AddressBook {
                             person.setState(state);
                             System.out.println("enter your city :");
                             String city = scanner1.next();
-                            if(city.equalsIgnoreCase("Mumbai")) {
+                            if (city.equalsIgnoreCase("Mumbai")) {
                                 person.setCity(city);
-                            }else {
+                            } else {
                                 try {
                                     throw new InvalidCityException("invalid city");
                                 } catch (InvalidCityException e) {
@@ -295,9 +297,9 @@ public class AddressBook {
                             person.setState(state);
                             System.out.println("enter your city :");
                             String city = scanner2.next();
-                            if(city.equalsIgnoreCase("pune")) {
+                            if (city.equalsIgnoreCase("pune")) {
                                 person.setCity(city);
-                            }else {
+                            } else {
                                 try {
                                     throw new InvalidCityException("invalid city");
                                 } catch (InvalidCityException e) {
@@ -323,6 +325,7 @@ public class AddressBook {
                 addAddressBook();
         }
     }
+
     /**
      * user can also creating his own addressbook with gives his specific name to addressbook
      */
@@ -398,18 +401,20 @@ public class AddressBook {
                 int enter = scanner.nextInt();
                 if (enter == 1) {
                     addAddressBook();
-                }else if(enter == 2) {
+                } else if (enter == 2) {
 
                 }
             }
         }
     }
-        /**
+
+    /**
      * display addressbook to user......
      */
-   public void showAddressBook() {
-       System.out.println("addressbook are created :"+addressBookMap);
+    public void showAddressBook() {
+        System.out.println("addressbook are created :" + addressBookMap);
     }
+
     /**
      * user can do serch data by using name of a person
      */
@@ -429,6 +434,7 @@ public class AddressBook {
             }
         }
     }
+
     /**
      * if user know person email id then he will also check by email id whos there with this email id
      */
@@ -445,6 +451,7 @@ public class AddressBook {
             }
         }
     }
+
     /**
      * user can also check who is from my state in addressbook
      */
@@ -461,6 +468,7 @@ public class AddressBook {
             }
         }
     }
+
     /**
      * if user will hve been any help fro his city then he will check in addressbook who is from my city then he will find his
      * phone no.
@@ -479,6 +487,7 @@ public class AddressBook {
             }
         }
     }
+
     /**
      * sorting by name
      */
@@ -490,17 +499,18 @@ public class AddressBook {
         }
         System.out.println(list);
     }
+
     /**
      * sort by state
      */
-    public  void  sortByState() {
+    public void sortByState() {
         System.out.println("enter a state  to seach :");
         String state = scanner.next();
         Iterator itr = list.listIterator();
         while (itr.hasNext()) {
             Contact contact = (Contact) itr.next();
             if (state.equalsIgnoreCase(person.getState())) {
-                Collections.sort(list,(l1,l2) -> l1.getFirstName().compareTo(l1.getFirstName()));
+                Collections.sort(list, (l1, l2) -> l1.getFirstName().compareTo(l1.getFirstName()));
                 System.out.println(list);
             }
         }
@@ -508,9 +518,10 @@ public class AddressBook {
 
     /**
      * printing text file...
+     *
      * @param ioService
      */
-    public  void showOnConsole(Utility.IOService ioService) {
+    public void showOnConsole(Utility.IOService ioService) {
         if (ioService.equals(Utility.IOService.CONSOLE_IO)) {
             System.out.println(list);
         } else if (ioService.equals(Utility.IOService.FILE_IO)) {
@@ -520,6 +531,7 @@ public class AddressBook {
 
     /**
      * printing csv file....
+     *
      * @param ioService1
      * @throws CsvRequiredFieldEmptyException
      * @throws CsvDataTypeMismatchException
@@ -527,35 +539,36 @@ public class AddressBook {
     public void consoleCsv(Utility.IOService ioService1) throws CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
         if (ioService1.equals(Utility.IOService.CONSOLE_IO)) {
             System.out.println(list);
-        } else if(ioService1.equals(Utility.IOService.FILE_IO)) {
+        } else if (ioService1.equals(Utility.IOService.FILE_IO)) {
             new Utility().writeCsvData(list);
         }
     }
+
     /**
      * writing json string ......
      */
     public void gsonData() {
         Gson gson = new Gson();
         gson.toJson(list);
-        System.out.println("gson string is :----->"+list);
+        System.out.println("gson string is :----->" + list);
     }
 
     /**
      * added json file
+     *
      * @param ioService
      */
     public void consoleOnJson(Utility.IOService ioService) {
         if (ioService.equals(Utility.IOService.CONSOLE_IO)) {
             System.out.println(list);
-        }
-        else if (ioService.equals(Utility.IOService.FILE_IO)) {
-           new Utility().writeJson(list);
+        } else if (ioService.equals(Utility.IOService.FILE_IO)) {
+            new Utility().writeJson(list);
         }
     }
 
 
     public List<Contact> readAddressBookDataDB(IOService ioService) {
-        if(ioService.equals(Utility.IOService.DB_IO))
+        if (ioService.equals(Utility.IOService.DB_IO))
             this.list = new AddressBookDBService().readData();
         return this.list;
     }
@@ -568,20 +581,21 @@ public class AddressBook {
 
     public Map<String, Integer> readContactByCityOrState() {
         AddressBookDBService addressBookDBService = new AddressBookDBService();
-            return addressBookDBService.getContactsByCityOrState();
+        return addressBookDBService.getContactsByCityOrState();
 
     }
 
     public void addContactToDB(String firstName, String lastName, String address, String city, Date start, String state, int zip, int phoneNumber, String email, String name, String TYPE) {
-      AddressBookDBService addressBookDBService = new AddressBookDBService();
-        list.add(addressBookDBService.addContact(firstName,lastName,address,city,start,state,zip,phoneNumber,email,name,TYPE));
+        AddressBookDBService addressBookDBService = new AddressBookDBService();
+        list.add(addressBookDBService.addContact(firstName, lastName, address, city, LocalDate.now(), state, zip, phoneNumber, email, name, TYPE));
     }
 
-    public boolean checkAddressBookInSyncWithDB(String firstname) {
+    public boolean checkAddressBookInSyncWithDB(String firstName) {
         AddressBookDBService addressBookDBService = new AddressBookDBService();
-        List<Contact> addressBookDataList = addressBookDBService.getAddressBookData(firstname);
-        return addressBookDataList.get(0).equals(getAddressBookData(firstname));
+        List<Contact> list = addressBookDBService.getAddressBookDatas(firstName);
+        return list.get(0).equals(getAddressBookData(firstName));
     }
+
     private Contact getAddressBookData(String firstName) {
         return this.list.stream()
                 .filter(addressBookDataListItem -> addressBookDataListItem.firstName.equals(firstName))
@@ -590,6 +604,55 @@ public class AddressBook {
     }
 
 
-    public enum IOService {FILE_IO,CONSOLE_IO,DB_IO,REST_IO}
+    public enum IOService {FILE_IO, CONSOLE_IO, DB_IO, REST_IO}
 
+
+    public void addDetails(List<Contact> list) {
+        list.forEach(addressBookData -> {
+            System.out.println("Employee being added : " + addressBookData.firstName);
+            this.addContactToDB(addressBookData.firstName, addressBookData.lastName, addressBookData.address,
+                    addressBookData.state, addressBookData.city, addressBookData.start,
+                    addressBookData.zip, addressBookData.phoneNo, addressBookData.email, addressBookData.name,
+                    (String) addressBookData.type);
+            System.out.println("Employee added : " + addressBookData.firstName);
+        });
+        System.out.println("" + this.list);
+    }
+
+    private void addContactToDB(String firstName, String lastName, String address, String state, String city, LocalDate start, int zip, int phoneNo, String email, String name, String type) {
+        AddressBookDBService addressBookDBService = new AddressBookDBService();
+        list.add(addressBookDBService.addContact(firstName, lastName, address, city,start, state, zip, phoneNo, email, name, type));
+    }
+    public void addDetailsWithThreads(List<Contact> list) {
+        Map<Integer, Boolean> contactAdditionStatus = new HashMap<>();
+        list.forEach(addressBookData -> {
+            Runnable task = () -> {
+                contactAdditionStatus.put(addressBookData.hashCode(), false);
+                System.out.println("Employee being added : " + Thread.currentThread().getName());
+                this.addContactToDB(addressBookData.firstName, addressBookData.lastName, addressBookData.address,
+                        addressBookData.state, addressBookData.city, addressBookData.start,
+                        addressBookData.zip, addressBookData.phoneNo, addressBookData.email, addressBookData.name,
+                        (String) addressBookData.type);
+                contactAdditionStatus.put(addressBookData.hashCode(), true);
+                System.out.println("Employee added : " + Thread.currentThread().getName());
+            };
+            Thread thread = new Thread(task, addressBookData.firstName);
+            thread.start();
+        });
+        while (contactAdditionStatus.containsValue(false)) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("" + this.list);
+    }
+
+
+    public long countEntries(IOService ioService) {
+        if (ioService.equals(IOService.FILE_IO))
+            return new Utility().countEntries();
+        return 0;
+    }
 }

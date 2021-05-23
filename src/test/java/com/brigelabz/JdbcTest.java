@@ -1,14 +1,14 @@
 package com.brigelabz;
 
-import com.bridgelabz.AddressBook;
-import com.bridgelabz.AddressBookDBService;
-import com.bridgelabz.AddressBookManager;
-import com.bridgelabz.Contact;
+import com.bridgelabz.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.sql.Date;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -54,6 +54,24 @@ public class JdbcTest {
         ,"Cricketer");
         boolean result = addressBook.checkAddressBookInSyncWithDB("rohit");
         Assert.assertTrue(result);
+    }
+    @Test
+    public void givenContacts_WhenAddedToDB_ShouldMatchEmployeeEntries() {
+        Utility utility = new Utility();
+        Contact[] addressBookArray = {
+                new Contact("rohit","sharma","bandra","mumbai",LocalDate.now(),"maharashtra",454,545445,"rohit@gmail.com","rohit","cricketer"),
+                new Contact("anushka","sharma","delhi","delhi",LocalDate.now(),"delhi",54,454545,"anu@gmail.com","anushka","actoress")};
+        AddressBook addressBook = new AddressBook();
+        addressBook.readAddressBookDataDB(AddressBook.IOService.DB_IO);
+        Instant start = Instant.now();
+        addressBook.addDetails(Arrays.asList(addressBookArray));
+        Instant end = Instant.now();
+        System.out.println("Duration without thread : " + Duration.between(start, end));
+        Instant threadStart = Instant.now();
+        addressBook.addDetailsWithThreads(Arrays.asList(addressBookArray));
+        Instant threadEnd = Instant.now();
+        System.out.println("Duration with Thread : " + Duration.between(threadStart, threadEnd));
+        Assert.assertTrue(true);
     }
 
 }

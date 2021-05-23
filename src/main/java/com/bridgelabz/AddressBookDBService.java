@@ -80,29 +80,29 @@ public class AddressBookDBService {
         return list;
     }
 
-//    private List<Contact> getAddressBookData(String name) {
-//        List<Contact> list = null;
-//        if(this.addressBookDataStatement == null)
-//            this.prepareStatementForAddressBookData();
-//        try{
-//            addressBookDataStatement.setString(1,name);
-//            ResultSet resultSet = addressBookDataStatement.executeQuery();
-//            list = this.getAddressBookData(String.valueOf(resultSet));
-//        } catch (SQLException e){
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
-    public List<Contact> getAddressBookData(String resultSet) {
+    List<Contact> getAddressBookDatas(String firstName) {
+        List<Contact> list = null;
+        if(this.addressBookDataStatement == null)
+            this.prepareStatementForAddressBookData();
+        try{
+            addressBookDataStatement.setString(1,firstName);
+            ResultSet resultSet = addressBookDataStatement.executeQuery();
+            list = this.getAddressBookData(resultSet);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<Contact> getAddressBookData(ResultSet resultSet) {
         List<Contact> list  = new ArrayList<>();
         try {
             while (resultSet.next()){
-                String firstName = resultSet.getNString("firstName");
-                String lastName = resultSet.getNString("lastName");
-                String address = resultSet.getNString("address");
-                String state = resultSet.getNString("state");
-                String city = resultSet.getNString("city");
-                String email = resultSet.getNString("email");
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                String address = resultSet.getString("address");
+                String state = resultSet.getString("state");
+                String city = resultSet.getString("city");
+                String email = resultSet.getString("email");
                 int zip = resultSet.getInt("zip");
                 int phoneNo = resultSet.getInt("phoneNumber");
                 LocalDate start = resultSet.getDate("start").toLocalDate();
@@ -150,7 +150,7 @@ public class AddressBookDBService {
         return contactByCityOrStateMap;
     }
 
-    public Contact addContact(String firstName, String lastName, String address, String city, Date start, String state, int zip, int phoneNumber, String email, String name, String type) {
+    public Contact addContact(String firstName, String lastName, String address, String city, LocalDate start, String state, int zip, int phoneNumber, String email, String name, String type) {
 
         Connection connection = null;
         try {
