@@ -56,7 +56,7 @@ public class JdbcTest {
         Assert.assertTrue(result);
     }
     @Test
-    public void givenContacts_WhenAddedToDB_ShouldMatchEmployeeEntries() {
+    public void givenContacts_WhenAddedToDB_ShouldMatchWithDatabase() {
         Utility utility = new Utility();
         Contact[] addressBookArray = {
                 new Contact("rohit","sharma","bandra","mumbai",LocalDate.now(),"maharashtra",454,545445,"rohit@gmail.com","rohit","cricketer"),
